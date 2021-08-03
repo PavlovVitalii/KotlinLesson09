@@ -36,12 +36,17 @@ class MainActivity : AppCompatActivity() {
                 "invalid password"
             } else {
                 passwordPref = passwordText.text.toString()
-                startActivity(Intent(this, ResultActivity::class.java))
                 null
             }
 
             pref.edit().putString("login", loginPref).apply()
             pref.edit().putString("password", passwordPref).apply()
+
+            if (loginText.text.toString().equals("admin") &&
+                passwordText.text.toString().equals("123456")
+            ) {
+                startActivity(Intent(this, ResultActivity::class.java))
+            }
 
         }
 
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
                     validate()
+
                     true
                 }
                 else -> false

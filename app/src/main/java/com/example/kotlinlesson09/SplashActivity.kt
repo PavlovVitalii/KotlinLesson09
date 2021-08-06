@@ -13,11 +13,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
-        val login = sharedPreferences.getString("login", 0.toString())
-        val password = sharedPreferences.getString("password", 0.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (login.equals("admin") && password.equals("123456")) {
+
+            val prefMup = sharedPreferences.all
+
+            if (prefMup.size >= 2) {
                 startActivity(Intent(this, ResultActivity::class.java))
             } else {
                 startActivity(Intent(this, MainActivity::class.java))

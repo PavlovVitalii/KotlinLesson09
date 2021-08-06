@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<TextInputLayout>(R.id.password_layout)
         val loginText = findViewById<TextInputEditText>(R.id.login_text)
         val passwordText = findViewById<TextInputEditText>(R.id.password_text)
+
         var loginPref = ""
         var passwordPref = ""
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 "invalid login"
             } else {
                 loginPref = loginText.text.toString()
+                pref.edit().putString("login", loginPref).apply()
                 null
             }
 
@@ -36,11 +38,12 @@ class MainActivity : AppCompatActivity() {
                 "invalid password"
             } else {
                 passwordPref = passwordText.text.toString()
+                pref.edit().putString("password", passwordPref).apply()
                 null
             }
 
-            pref.edit().putString("login", loginPref).apply()
-            pref.edit().putString("password", passwordPref).apply()
+
+
 
             if (loginText.text.toString().equals("admin") &&
                 passwordText.text.toString().equals("123456")
